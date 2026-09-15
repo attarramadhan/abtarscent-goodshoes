@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Hubungi toko untuk parfum, sepatu, promo, dan lokasi toko."
+    />
+    <title>Belanja di Abtarscent &amp; Goodshoes</title>
+    <style>
+      :root {
+        --cream: #0d1b2a;
+        --ink: #f7f4ee;
+        --muted: #b9c5d2;
+        --brown: #14283d;
+        --brown-dark: #09131f;
+        --orange: #c9a35d;
+        --line: #294057;
+        --white: #ffffff;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(201, 163, 93, 0.18) 0, transparent 27%),
+          radial-gradient(circle at 90% 70%, rgba(47, 91, 132, 0.25) 0, transparent 30%),
+          linear-gradient(135deg, #0d1b2a 0%, #10253a 48%, #09131f 100%);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      main {
+        position: relative;
+        overflow: hidden;
+        width: min(100% - 32px, 520px);
+        margin: 0 auto;
+        padding: 30px 22px 20px;
+        border-right: 1px solid rgba(201, 163, 93, 0.2);
+        border-left: 1px solid rgba(201, 163, 93, 0.2);
+        background: rgba(20, 40, 61, 0.45);
+        box-shadow: 0 0 80px rgba(0, 0, 0, 0.18);
+      }
+
+      main::before,
+      main::after {
+        position: absolute;
+        z-index: -1;
+        width: 170px;
+        height: 170px;
+        border: 1px solid rgba(201, 163, 93, 0.2);
+        border-radius: 50%;
+        content: "";
+      }
+
+      main::before {
+        top: 150px;
+        left: -110px;
+      }
+
+      main::after {
+        right: -110px;
+        bottom: 110px;
+      }
+
+      .profile {
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--orange);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+
+      .logo {
+        display: grid;
+        width: 82px;
+        height: 82px;
+        margin: 0 auto 16px;
+        place-items: center;
+        border: 1px solid var(--orange);
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--brown-dark);
+        object-fit: cover;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35), 0 0 0 7px rgba(201, 163, 93, 0.12);
+        font-size: 30px;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.65rem, 5vw, 2rem);
+        letter-spacing: -0.045em;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        margin: 16px 0 0;
+        color: var(--orange);
+        font-size: 0.72rem;
+      }
+
+      .divider::before,
+      .divider::after {
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(90deg, transparent, rgba(201, 163, 93, 0.55));
+        content: "";
+      }
+
+      .divider::after {
+        background: linear-gradient(90deg, rgba(201, 163, 93, 0.55), transparent);
+      }
+
+      .tagline {
+        max-width: 360px;
+        margin: 10px auto 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.01em;
+        line-height: 1.55;
+      }
+
+      .notice {
+        margin: 24px 0 16px;
+        padding: 12px 16px;
+        border: 1px solid rgba(201, 163, 93, 0.38);
+        border-radius: 16px;
+        color: #ead7ae;
+        background: rgba(9, 19, 31, 0.62);
+        font-size: 0.83rem;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      .section-label {
+        margin: 0 0 10px 4px;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .links {
+        display: grid;
+        gap: 12px;
+      }
+
+      .link-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-height: 72px;
+        padding: 13px 16px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        color: var(--ink);
+        background: rgba(20, 40, 61, 0.9);
+        box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+
+      .link-card:hover,
+      .link-card:focus-visible {
+        border-color: var(--orange);
+        outline: none;
+        box-shadow: var(--shadow);
+        transform: translateY(-2px);
+      }
+
+      .link-card:first-child {
+        border-color: rgba(185, 149, 88, 0.55);
+        background: linear-gradient(105deg, rgba(34, 59, 82, 0.98), rgba(20, 40, 61, 0.94));
+      }
+
+      .icon {
+        display: grid;
+        flex: 0 0 43px;
+        width: 43px;
+        height: 43px;
+        place-items: center;
+        border-radius: 12px;
+        color: var(--brown-dark);
+        background: #203b56;
+        font-size: 1.25rem;
+      }
+
+      .link-copy {
+        flex: 1;
+      }
+
+      .link-title {
+        display: block;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+      }
+
+      .link-description {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .arrow {
+        color: var(--brown);
+        font-size: 1.35rem;
+      }
+
+      .tip {
+        margin: 24px 0 0;
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: var(--muted);
+        background: rgba(20, 40, 61, 0.5);
+        font-size: 0.78rem;
+        text-align: center;
+      }
+
+      footer {
+        padding: 24px 0 8px;
+        color: #8095a9;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .link-card {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="profile">
+        <p class="eyebrow">A fragrance &amp; footwear studio</p>
+        <img
+          class="logo"
+          src="logo.jpg"
+          alt="Logo Abtarscent &amp; Goodshoes"
+        />
+        <h1>Abtarscent &amp; Goodshoes</h1>
+        <div class="divider" aria-hidden="true">✦</div>
+        <p class="tagline">
+          Aroma pilihan, sepatu kekinian, promo terbaru.<br />
+          Temukan aroma favorit dan sepatu pilihanmu di sini.
+        </p>
+      </header>
+
+      <p class="notice">
+        Pilih kebutuhanmu di bawah ini — admin siap membantu setiap hari.
+      </p>
+
+      <p class="section-label">Hubungi kami</p>
+      <nav class="links" aria-label="Menu toko">
+        <!-- WhatsApp parfum: 6285817599806 -->
+        <a
+          class="link-card"
+          href="https://wa.me/6285817599806?text=Halo%20Abtarscent%20%26%20Goodshoes%2C%20saya%20ingin%20tanya%20tentang%20parfum."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon" aria-hidden="true">🧴</span>
+          <span class="link-copy">
+            <span class="link-title">Pesan Parfum</span>
+            <span class="link-description">Konsultasi aroma &amp; pesan sekarang</span>
+          </span>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+
+        <!-- WhatsApp sepatu: 6281222886112 -->
+        <a
+          class="link-card"
+          href="https://wa.me/6281222886112?text=Halo%20Abtarscent%20%26%20Goodshoes%2C%20saya%20ingin%20tanya%20tentang%20sepatu."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon" aria-hidden="true">👟</span>
+          <span class="link-copy">
+            <span class="link-title">Pesan Sepatu</span>
+            <span class="link-description">Cek ukuran, warna, dan stok terbaru</span>
+          </span>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+
+        <!-- Saluran WhatsApp toko -->
+        <a
+          class="link-card"
+          href="https://whatsapp.com/channel/0029VbCW8gKDZ4La8oOwNc0L"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon" aria-hidden="true">📣</span>
+          <span class="link-copy">
+            <span class="link-title">Saluran WhatsApp</span>
+            <span class="link-description">Dapatkan promo &amp; info produk terbaru</span>
+          </span>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+
+        <!-- Lokasi toko -->
+        <a
+          class="link-card"
+          href="https://maps.app.goo.gl/pFP8KcaFJxVewAER8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon" aria-hidden="true">📍</span>
+          <span class="link-copy">
+            <span class="link-title">Lokasi Toko</span>
+            <span class="link-description">Lihat alamat &amp; petunjuk jalan</span>
+          </span>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+      </nav>
+
+      <p class="tip">Simpan halaman ini di bio TikTok agar pelanggan mudah menemukanmu.</p>
+
+      <footer>© 2026 Abtarscent &amp; Goodshoes · Belanja mudah, cepat, dan aman</footer>
+    </main>
+  </body>
+</html>
