@@ -72,6 +72,7 @@
 
       .profile {
         text-align: center;
+        animation: rise-in 650ms ease both;
       }
 
       .eyebrow {
@@ -175,6 +176,23 @@
         box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
         text-decoration: none;
         transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        animation: rise-in 550ms ease both;
+      }
+
+      .link-card:nth-child(1) {
+        animation-delay: 120ms;
+      }
+
+      .link-card:nth-child(2) {
+        animation-delay: 180ms;
+      }
+
+      .link-card:nth-child(3) {
+        animation-delay: 240ms;
+      }
+
+      .link-card:nth-child(4) {
+        animation-delay: 300ms;
       }
 
       .link-card:hover,
@@ -242,9 +260,50 @@
         text-align: center;
       }
 
+      .toast {
+        position: fixed;
+        right: 16px;
+        bottom: 18px;
+        left: 16px;
+        z-index: 10;
+        max-width: 420px;
+        margin: auto;
+        padding: 12px 16px;
+        border: 1px solid rgba(201, 163, 93, 0.5);
+        border-radius: 12px;
+        color: var(--ink);
+        background: rgba(9, 19, 31, 0.94);
+        box-shadow: var(--shadow);
+        font-size: 0.82rem;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(12px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        .link-card {
+        .profile,
+        .link-card,
+        .toast {
           transition: none;
+          animation: none;
         }
       }
     </style>
@@ -335,7 +394,28 @@
 
       <p class="tip">Simpan halaman ini di bio TikTok agar pelanggan mudah menemukanmu.</p>
 
-      <footer>© 2026 Abtarscent &amp; Goodshoes · Belanja mudah, cepat, dan aman</footer>
+      <footer>© <span id="year">2026</span> Abtarscent &amp; Goodshoes · Belanja mudah, cepat, dan aman</footer>
     </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const toast = document.querySelector("#toast");
+      const year = document.querySelector("#year");
+      let toastTimer;
+
+      year.textContent = new Date().getFullYear();
+
+      document.querySelectorAll(".link-card").forEach((link) => {
+        link.addEventListener("click", () => {
+          const title = link.querySelector(".link-title").textContent;
+          toast.textContent = `Membuka ${title}...`;
+          toast.classList.add("is-visible");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.remove("is-visible");
+          }, 1800);
+        });
+      });
+    </script>
   </body>
 </html>
